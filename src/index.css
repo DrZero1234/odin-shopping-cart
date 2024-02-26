@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Oswald";
+  src:("Oswald-Regular"),
+  url("./fonts/Oswald/Oswald-Regular.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: "Oswald-Medium";
+  src: ("Oswald-Medium"),
+    url("./fonts/Oswald/Oswald-Medium.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: "Oswald-Bold";
+  src: ("Oswald-Bold"),
+    url("./fonts/Oswald/Oswald-Bold.ttf") format("truetype")
+}
+
 *,
 *::before,
 *::after {

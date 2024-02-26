@@ -2,14 +2,25 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 
-import styles from "./Layout.module.css";
+import styled from "styled-components";
+import { GlobalStyle } from "../../App";
+
+const StyledLayoutContainer = styled.div`
+  font-family: "OswaldRegular", sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-width: 100vw;
+`;
 
 export const Layout = () => {
   return (
-    <div className={styles.container}>
+    <StyledLayoutContainer>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
-    </div>
+    </StyledLayoutContainer>
   );
 };

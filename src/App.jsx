@@ -6,6 +6,11 @@ import {
 } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { Home } from "./pages/Home/Home";
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+  font-family: "OswaldRegular", sans-serif
+`;
 
 const router = createBrowserRouter(
   createRoutesFromElements(
