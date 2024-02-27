@@ -9,7 +9,6 @@ const StyledHomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
   height: 100%;
   width: 100%;
   color: white;
