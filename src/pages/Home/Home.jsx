@@ -14,8 +14,12 @@ const StyledHomeContainer = styled.div`
   color: white;
 
   h1 {
-    font-size: 5em;
+    font-size: 5rem;
     font-family: "OswaldBold", sans-serif;
+  }
+
+  p {
+    font-size: 1.25rem;
   }
 `;
 
@@ -23,7 +27,6 @@ const StyledHomeIntroFlex = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.5em;
-  padding: 20px 40px;
 `;
 
 const StyledFlexSection = styled.section`

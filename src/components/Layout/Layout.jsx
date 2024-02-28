@@ -3,6 +3,7 @@ import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 
 import styled from "styled-components";
+import { useState } from "react";
 
 const StyledLayoutContainer = styled.div`
   font-family: "OswaldRegular", sans-serif;
@@ -18,12 +19,14 @@ const StyledLayoutContainer = styled.div`
 `;
 
 export const Layout = () => {
+  const [cart, setCart] = useState([]);
+
   return (
     <>
       <StyledLayoutContainer>
         <Header />
         <main>
-          <Outlet />
+          <Outlet context={{ cart, setCart }} />
         </main>
         <Footer />
       </StyledLayoutContainer>

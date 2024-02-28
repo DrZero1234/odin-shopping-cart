@@ -1,15 +1,27 @@
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   justify-content: space-around;
   align-items: center;
+
+  ul {
+    list-style-type: none;
+  }
+
+  li,
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 const StyledHeaderLogo = styled.div`
   display: flex;
+  flex-grow: 1;
+  margin: 0px 40px;
   flex-direction: column;
   justify-content: center;
 
@@ -29,26 +41,50 @@ const StyledHeaderLogo = styled.div`
   }
 `;
 
-const StyledHeaderNavbar = styled.nav`
+const StyledHeaderNavWrapper = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  flex-grow: 2;
   background-color: white;
-  height: 50%;
   color: black;
+  height: 50%;
+
   ul {
-    height: 100%;
     display: flex;
-    flex-direction: row;
     gap: 0.5rem;
     align-items: center;
-    justify-content: center;
   }
 
-  ul a {
-    text-decoration: none;
-    color: inherit;
+  li a:hover {
+    text-decoration: underline;
+  }
+
+  button {
+    border: none;
+    background-color: ${({ theme }) => theme.colors.btnGold};
+    height: 35px;
+    border-radius: 10px;
+    padding: 0 10px;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 `;
 
 export const Header = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+
+  const testList = [
+    { name: "lel" },
+    { name: "lil" },
+    { name: "lul" },
+  ];
+
   return (
     <StyledHeader>
       <StyledHeaderLogo>
@@ -57,24 +93,20 @@ export const Header = () => {
         </Link>
         <p>Modernwear</p>
       </StyledHeaderLogo>
-      <StyledHeaderNavbar>
+      <StyledHeaderNavWrapper>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="about">About</NavLink>
           </li>
-          <li>
-            <NavLink to="/about">About</NavLink>
-          </li>
-          <li>
-            <span>Category</span>
-          </li>
+          <li>Categories</li>
         </ul>
-      </StyledHeaderNavbar>
-      <StyledHeaderNavbar>
         <ul>
-          <li>Cart</li>
+          <li>
+            <button>Cart</button>
+          </li>
+          <li>Theme</li>
         </ul>
-      </StyledHeaderNavbar>
+      </StyledHeaderNavWrapper>
     </StyledHeader>
   );
 };
