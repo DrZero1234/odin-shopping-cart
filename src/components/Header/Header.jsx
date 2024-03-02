@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
+import { StyledDropdown } from "../styles/Dropdown.styles";
+
+import PointerUp from "../../assets/PointerUp.svg";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -52,7 +55,7 @@ const StyledHeaderNavWrapper = styled.nav`
   color: black;
   height: 50%;
 
-  ul {
+  .header-nav-list {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -62,23 +65,12 @@ const StyledHeaderNavWrapper = styled.nav`
     text-decoration: underline;
   }
 
-  button {
-    border: none;
-    background-color: ${({ theme }) => theme.colors.btnGold};
-    height: 35px;
-    border-radius: 10px;
-    padding: 0 10px;
-  }
-
   button:hover {
     cursor: pointer;
   }
 `;
 
 export const Header = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-
   const testList = [
     { name: "lel" },
     { name: "lil" },
@@ -94,15 +86,21 @@ export const Header = () => {
         <p>Modernwear</p>
       </StyledHeaderLogo>
       <StyledHeaderNavWrapper>
-        <ul>
+        <ul className="header-nav-list">
           <li>
             <NavLink to="about">About</NavLink>
           </li>
-          <li>Categories</li>
-        </ul>
-        <ul>
           <li>
-            <button>Cart</button>
+            <StyledDropdown
+              childType="span"
+              label="Categories"
+              list={testList}
+            />
+          </li>
+        </ul>
+        <ul className="header-nav-list">
+          <li>
+            <StyledDropdown childType="btn" label="Cart" list={[]} />
           </li>
           <li>Theme</li>
         </ul>

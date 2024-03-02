@@ -1,90 +1,61 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { StyledCartButton } from "./CartButton.styled";
+import { DropdownSpan } from "./SpanDropdown.styled";
 
-import React, { useState } from "react";
-
-const SelectContainer = styled.div`
-  position: relative;
-  margin: 0;
-`;
-
-const SelectLabelButton = styled.button`
-  padding: 0.3rem 0.5rem;
-  min-width: 7rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  background-color: #fff;
-  border: none;
-  border-radius: 5px;
-  color: #111;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid slategrey;
-  cursor: pointer;
-  box-shadow: 0 1px 4px 0 #ccc;
-  transition: 0.3s ease;
-  &:hover {
-    background-color: #eee;
+const StyledDropdownWrapper = styled.div`
+  li {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    text-align: center;
   }
 `;
 
-const DropdownStyle = styled.div`
+const StyledDropdownList = styled.ul`
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   position: absolute;
-  top: 0;
-  left: 0;
-  max-height: 40vmax;
-  min-width: 10rem;
-  padding: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  background: #fafafa;
-  border: 1.5px solid slategrey;
-  transition: max-height 0.2s ease;
-  overflow: scroll;
-  visibility: ${({ isVisible }) => isVisible}
-  max-height: ${({ isVisible }) => (isVisible ? "40px" : "0px")}
+  background-color: white;
+  min-width: 100px;
+  box-shadow: 2px 2px 5px hsl(0, 0%, 0%, 0.8);
+  margin-top: 5px;
+  transition: display 1s;
+  min-height: 100px;
 `;
 
-const DropdownItem = styled.div`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
-  display: flex;
-  align-items: center;
-  width: 90%;
-  margin: 0.15rem 0;
-  padding: 0.3rem 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #333;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  &:hover,
-  :focus,
-  :focus:hover {
-    background-color: #166edc;
-    color: #fafafa;
-    outline: none;
-  }
-`;
-
-export const DropdownButton = ({ btnLabel, values }) => {
+export const StyledDropdown = ({ childType, label, list }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <SelectContainer>
-      <SelectLabelButton onClick={handleClick}>
-        {btnLabel}
-      </SelectLabelButton>
-      <DropdownStyle isVisible={open}>
-        {values.map((value, index) => (
-          <DropdownItem key={index}>{value.name}</DropdownItem>
-        ))}
-      </DropdownStyle>
-    </SelectContainer>
+    <StyledDropdownWrapper>
+      {childType === "btn" ? (
+        <StyledCartButton onClick={() => setIsOpen(!isOpen)}>
+          {label}
+        </StyledCartButton>
+      ) : childType === "span" ? (
+        <DropdownSpan
+          label={label}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+      ) : null}
+      <StyledDropdownList isOpen={isOpen}>
+        {childType === "btn" && list.length < 1 ? (
+          <div
+            className="empty-cart"
+            style={{ minHeight: "100%", padding: "10px 15px" }}
+          >
+            <h4>Not items in your cart</h4>
+          </div>
+        ) : (
+          list.map((item, i) => (
+            <li key={i}>
+              <a href="">{item.name}</a>
+            </li>
+          ))
+        )}
+      </StyledDropdownList>
+    </StyledDropdownWrapper>
   );
 };
