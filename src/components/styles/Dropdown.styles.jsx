@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { StyledCartButton } from "./CartButton.styled";
 import { DropdownSpan } from "./SpanDropdown.styled";
+import { NavLink } from "react-router-dom";
 
 const StyledDropdownWrapper = styled.div`
   li {
@@ -49,11 +50,15 @@ export const StyledDropdown = ({ childType, label, list }) => {
             <h4>Not items in your cart</h4>
           </div>
         ) : (
-          list.map((item, i) => (
-            <li key={i}>
-              <a href="">{item.name}</a>
-            </li>
-          ))
+          list.map((item, i) => {
+            const url = encodeURI(item);
+            console.log(url);
+            return (
+              <li key={i}>
+                <NavLink to={url}>{item}</NavLink>
+              </li>
+            );
+          })
         )}
       </StyledDropdownList>
     </StyledDropdownWrapper>

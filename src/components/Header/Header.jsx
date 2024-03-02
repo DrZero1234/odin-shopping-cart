@@ -70,7 +70,7 @@ const StyledHeaderNavWrapper = styled.nav`
   }
 `;
 
-export const Header = () => {
+export const Header = ({ categories }) => {
   const testList = [
     { name: "lel" },
     { name: "lil" },
@@ -94,7 +94,7 @@ export const Header = () => {
             <StyledDropdown
               childType="span"
               label="Categories"
-              list={testList}
+              list={categories}
             />
           </li>
         </ul>
