@@ -6,7 +6,7 @@ import { GlobalFonts } from "./fonts/fonts";
 import { GlobalStyles } from "./components/styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 
-const theme = {
+export const theme = {
   colors: {
     mainGreen: "#083045",
     btnGold: "#bda068",

@@ -67,5 +67,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: "OutfitRegular",sans-serif;
         background-color: #083045;
         color: #fff;
+        letter-spacing: .6px;
+        
     }
 `

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { StyledCartButton } from "./CartButton.styled";
-import { DropdownSpan } from "./SpanDropdown.styled";
+import { StyledCartButton } from "../CartButton.styled";
+import { DropdownSpan } from "../SpanDropdown.styled";
 import { NavLink } from "react-router-dom";
 
 const StyledDropdownWrapper = styled.div`
@@ -25,17 +25,25 @@ const StyledDropdownList = styled.ul`
   min-height: 100px;
 `;
 
-export const StyledDropdown = ({ childType, label, list }) => {
+export const StyledDropdown = ({
+  childType = "span",
+  label,
+  list = [],
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <StyledDropdownWrapper>
       {childType === "btn" ? (
-        <StyledCartButton onClick={() => setIsOpen(!isOpen)}>
+        <StyledCartButton
+          onClick={() => setIsOpen(!isOpen)}
+          data-testid="DropdownParent"
+        >
           {label}
         </StyledCartButton>
       ) : childType === "span" ? (
         <DropdownSpan
+          data-testid="DropdownParent"
           label={label}
           isOpen={isOpen}
           setIsOpen={setIsOpen}

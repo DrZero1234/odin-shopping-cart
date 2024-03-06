@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
-import { StyledDropdown } from "../styles/Dropdown.styles";
+import { StyledDropdown } from "../styles/Dropdown/Dropdown.styles";
 
 import PointerUp from "../../assets/PointerUp.svg";
 
@@ -49,7 +49,7 @@ const StyledHeaderNavWrapper = styled.nav`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 10px 0px 0px 10px;
   flex-grow: 2;
   background-color: white;
   color: black;
@@ -86,7 +86,7 @@ export const Header = ({ categories }) => {
         <p>Modernwear</p>
       </StyledHeaderLogo>
       <StyledHeaderNavWrapper>
-        <ul className="header-nav-list">
+        <ul className="header-nav-list" data-testid="categoryList">
           <li>
             <NavLink to="about">About</NavLink>
           </li>

@@ -12,7 +12,7 @@ describe("something truthy and falsy", () => {
   });
 
   it("renders headline", () => {
-    render(<App title="React" />);
+    render(<App />);
 
     screen.debug();
   });
