@@ -25,6 +25,18 @@ export const loader = async () => {
 
 export const Layout = () => {
   const [cart, setCart] = useState([]);
+
+  const isProductInCart = (id) => cart.find((item) => id === item.id);
+
+  const totalPrice = cart.length
+    ? cart
+        .reduce(
+          (currentValue, item) =>
+            currentValue + item.price * +item.quantity,
+          0
+        )
+        .toFixed(2)
+    : 0;
   /* official version
   const { categories } = useLoaderData();
   */
@@ -35,9 +47,15 @@ export const Layout = () => {
   return (
     <>
       <StyledLayoutContainer>
-        <Header categories={categories} />
+        <Header
+          categories={categories}
+          cart={cart}
+          totalPrice={totalPrice}
+        />
         <main>
-          <Outlet context={{ cart, setCart }} />
+          <Outlet
+            context={{ cart, setCart, isProductInCart, totalPrice }}
+          />
         </main>
         <Footer />
       </StyledLayoutContainer>

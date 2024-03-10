@@ -4,6 +4,8 @@ import { StyledCartButton } from "../CartButton.styled";
 import { DropdownSpan } from "../SpanDropdown.styled";
 import { NavLink } from "react-router-dom";
 
+import cartIcon from "../../../assets/CartIcon.svg";
+
 const StyledDropdownWrapper = styled.div`
   li {
     display: block;
@@ -23,12 +25,20 @@ const StyledDropdownList = styled.ul`
   margin-top: 5px;
   transition: display 1s;
   min-height: 100px;
+
+  .empty-cart {
+    min-height: inherit;
+    padding: 10px 15px;
+    display: flex;
+    align-items: flex-end;
+  }
 `;
 
 export const StyledDropdown = ({
   childType = "span",
   label,
   list = [],
+  totalPrice,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,7 +49,8 @@ export const StyledDropdown = ({
           onClick={() => setIsOpen(!isOpen)}
           data-testid="DropdownParent"
         >
-          {label}
+          <img src={cartIcon} />
+          <span>{label}</span>
         </StyledCartButton>
       ) : childType === "span" ? (
         <DropdownSpan
@@ -51,10 +62,7 @@ export const StyledDropdown = ({
       ) : null}
       <StyledDropdownList isOpen={isOpen}>
         {childType === "btn" && list.length < 1 ? (
-          <div
-            className="empty-cart"
-            style={{ minHeight: "100%", padding: "10px 15px" }}
-          >
+          <div className="empty-cart">
             <h4>Not items in your cart</h4>
           </div>
         ) : (

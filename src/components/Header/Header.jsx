@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { StyledDropdown } from "../styles/Dropdown/Dropdown.styles";
 
 import PointerUp from "../../assets/PointerUp.svg";
+import CartIcon from "../../assets/CartIcon.svg";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -70,7 +71,7 @@ const StyledHeaderNavWrapper = styled.nav`
   }
 `;
 
-export const Header = ({ categories }) => {
+export const Header = ({ categories, totalPrice, cart }) => {
   const testList = [
     { name: "lel" },
     { name: "lil" },
@@ -99,9 +100,12 @@ export const Header = ({ categories }) => {
           </li>
         </ul>
         <ul className="header-nav-list">
-          <li>
-            <StyledDropdown childType="btn" label="Cart" list={[]} />
-          </li>
+          <StyledDropdown
+            childType="btn"
+            label="Cart"
+            list={[]}
+            totalPrice={totalPrice}
+          />
           <li>Theme</li>
         </ul>
       </StyledHeaderNavWrapper>

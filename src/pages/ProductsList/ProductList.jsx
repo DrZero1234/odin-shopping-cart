@@ -18,17 +18,17 @@ const BackBtn = styled(StyledBackBtn)`
 const MainGridWrapper = styled.div`
   display: grid;
   grid-template-areas:
-    "backBtn "
+    "backBtn ."
     "navigationList productList"
     "navigationList productList";
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: auto;
 `;
 
 const ProductListGrid = styled.div`
   display: grid;
   grid-area: productList;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: auto;
   grid-gap: 1.5em;
 `;

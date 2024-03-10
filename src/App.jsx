@@ -14,6 +14,10 @@ import {
   ProductList,
   loader as ProductListLoader,
 } from "./pages/ProductsList/ProductList";
+import {
+  ProductDetails,
+  loader as productDetailsLoader,
+} from "./pages/ProductDetails/ProductDetails";
 
 // Page template :https://preview.themeforest.net/item/mensonly-opencart-4-clothing-store-template/full_screen_preview/46788283
 
@@ -26,6 +30,11 @@ const router = createBrowserRouter(
         path=":categoryName"
         element={<ProductList />}
         loader={ProductListLoader}
+      />
+      <Route
+        path="product/:productId"
+        element={<ProductDetails />}
+        loader={productDetailsLoader}
       />
     </Route>
   )

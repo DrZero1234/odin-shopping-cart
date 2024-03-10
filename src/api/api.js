@@ -26,3 +26,12 @@ export const getCategoryProductList = async (key,categoryName) => {
 
     return ProductListMock
 } 
+
+export const getProductById = async(key,productId) => {
+  try{
+    const res = await fetch(`https://affogato-the-ecommerce-store.p.rapidapi.com/api/items/${productId}`, FetchOptions(key));
+    return await res.json()
+  } catch(e) {
+    console.error(e)
+  }
+}
