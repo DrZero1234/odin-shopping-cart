@@ -103,7 +103,7 @@ export const Header = ({ categories, totalPrice, cart }) => {
           <StyledDropdown
             childType="btn"
             label="Cart"
-            list={[]}
+            list={cart}
             totalPrice={totalPrice}
           />
           <li>Theme</li>

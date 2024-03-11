@@ -32,7 +32,7 @@ export const Layout = () => {
     ? cart
         .reduce(
           (currentValue, item) =>
-            currentValue + item.price * +item.quantity,
+            currentValue + +item.price * +item.quantity,
           0
         )
         .toFixed(2)

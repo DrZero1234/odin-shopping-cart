@@ -15,4 +15,9 @@ export const StyledCartButton = styled.button`
   padding: 0 10px;
   border: none;
   cursor: pointer;
+
+  img {
+    height: 30px;
+    width: 25px;
+  }
 `;

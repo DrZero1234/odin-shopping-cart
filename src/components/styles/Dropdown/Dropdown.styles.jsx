@@ -24,6 +24,7 @@ const StyledDropdownList = styled.ul`
   box-shadow: 2px 2px 5px hsl(0, 0%, 0%, 0.8);
   margin-top: 5px;
   transition: display 1s;
+  padding: 5px 10px;
   min-height: 100px;
 
   .empty-cart {
@@ -65,7 +66,15 @@ export const StyledDropdown = ({
           <div className="empty-cart">
             <h4>Not items in your cart</h4>
           </div>
+        ) : // Header Dropdown if the cart has items in it
+        childType === "btn" && list.length > 0 ? (
+          <>
+            {list.map((product) => (
+              <p>{product.productName}</p>
+            ))}
+          </>
         ) : (
+          /* Header dropdown span for the categories */
           list.map((item, i) => {
             const url = encodeURI(item);
             console.log(url);
