@@ -48,13 +48,17 @@ const StyledHeaderLogo = styled.div`
 const StyledHeaderNavWrapper = styled.nav`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   border-radius: 10px 0px 0px 10px;
-  flex-grow: 2;
+  gap: 8rem;
+  flex-grow: 5;
   background-color: white;
   color: black;
   height: 50%;
+
+  > ul {
+    margin: 0 3em;
+  }
 
   .header-nav-list {
     display: flex;
@@ -71,7 +75,7 @@ const StyledHeaderNavWrapper = styled.nav`
   }
 `;
 
-export const Header = ({ categories, totalPrice, cart }) => {
+export const Header = ({ categories, totalPrice, cart, setCart }) => {
   const testList = [
     { name: "lel" },
     { name: "lil" },
@@ -83,8 +87,9 @@ export const Header = ({ categories, totalPrice, cart }) => {
       <StyledHeaderLogo>
         <Link to="/">
           <h1>Getclo</h1>
+
+          <p>Modernwear</p>
         </Link>
-        <p>Modernwear</p>
       </StyledHeaderLogo>
       <StyledHeaderNavWrapper>
         <ul className="header-nav-list" data-testid="categoryList">
@@ -105,6 +110,7 @@ export const Header = ({ categories, totalPrice, cart }) => {
             label="Cart"
             list={cart}
             totalPrice={totalPrice}
+            setCart={setCart}
           />
           <li>Theme</li>
         </ul>

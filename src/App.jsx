@@ -18,6 +18,7 @@ import {
   ProductDetails,
   loader as productDetailsLoader,
 } from "./pages/ProductDetails/ProductDetails";
+import { Checkout } from "./pages/Checkout/Checkout";
 
 // Page template :https://preview.themeforest.net/item/mensonly-opencart-4-clothing-store-template/full_screen_preview/46788283
 
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
         element={<ProductDetails />}
         loader={productDetailsLoader}
       />
+      <Route path="checkout" element={<Checkout />} />
     </Route>
   )
 );

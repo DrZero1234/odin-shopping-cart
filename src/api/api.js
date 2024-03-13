@@ -1,5 +1,6 @@
 import { FetchOptions } from "../utils/fetchOptions"
 import { ProductListMock } from "./ProductListMock"
+import { productDataMock } from "./productDataMock"
 
 export const getCategories = async(key) => {
 
@@ -28,10 +29,14 @@ export const getCategoryProductList = async (key,categoryName) => {
 } 
 
 export const getProductById = async(key,productId) => {
+  /* Original version
   try{
     const res = await fetch(`https://affogato-the-ecommerce-store.p.rapidapi.com/api/items/${productId}`, FetchOptions(key));
     return await res.json()
   } catch(e) {
     console.error(e)
   }
+  */
+
+  return productDataMock
 }

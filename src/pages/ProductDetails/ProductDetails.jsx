@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { getProductById } from "../../api/api";
+import { StyledBackBtn } from "../../components/styles/BackBtn";
 
 export const loader = async ({ params }) => {
   return getProductById(
@@ -9,7 +10,10 @@ export const loader = async ({ params }) => {
 };
 
 export const ProductDetails = () => {
-  const { item: productData } = useLoaderData();
+  //const { item: productData } = useLoaderData();
+  const navigate = useNavigate();
+
+  const productData = useLoaderData();
   const {
     id,
     category,
@@ -21,7 +25,12 @@ export const ProductDetails = () => {
     productName,
     productRating,
   } = productData;
-  console.log(id);
+  console.log(productData);
 
-  return <h1>Product details page</h1>;
+  return (
+    <StyledBackBtn
+      label="Back to category"
+      onClick={() => navigate(-1)}
+    ></StyledBackBtn>
+  );
 };

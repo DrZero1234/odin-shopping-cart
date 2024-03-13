@@ -55,9 +55,11 @@ export const ProductList = () => {
         <BackBtn label="Back to category" />
         <ProductListGrid>
           {items.length > 0 ? (
-            items.map((item) => <ProductCard productData={item} />)
+            items.map((item) => (
+              <ProductCard productData={item} key={item.id} />
+            ))
           ) : (
-            <h2>No items in this category</h2>
+            <h2>No products in this category</h2>
           )}
         </ProductListGrid>
       </MainGridWrapper>

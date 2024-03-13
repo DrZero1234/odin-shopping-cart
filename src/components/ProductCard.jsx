@@ -47,11 +47,27 @@ const StyledProductCard = styled.div`
     display: flex;
     flex-direction: row;
     gap: 0.5em;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
   }
 
   .add-to-cart-wrapper > input[type="number"] {
     flex: 1 1 0;
     max-width: 100px;
+    background: inherit;
+    color: white;
+    border: 1px solid ${({ theme }) => theme.colors.btnGold};
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .add-to-cart-wrapper > input[type="number"]:disabled {
+    opacity: 0.5;
   }
 
   a:hover {
@@ -62,6 +78,10 @@ const StyledProductCard = styled.div`
     background-color: white;
     color: black;
     cursor: pointer;
+
+    input[type="number"]  {
+      color: black;
+    }
   }
 `;
 
@@ -109,15 +129,8 @@ export const ProductCard = ({ productData }) => {
     return;
   };
 
-  const {
-    id,
-    productName,
-    price,
-    description,
-    category,
-    image,
-    sizeOptions,
-  } = productData;
+  const { id, productName, price, description, category, image } =
+    productData;
 
   const imgRef = useRef(null);
 
@@ -136,12 +149,6 @@ export const ProductCard = ({ productData }) => {
         <h3>{productName}</h3>
       </Link>
       <p>{description.substring(0, 75)}...</p>
-      <div className="size-data">
-        <span>Size:</span>
-        {sizeOptions.map((sizeOption) => (
-          <button>sizeOption</button>
-        ))}
-      </div>
       <span id="price">{price}</span>
       <div className="add-to-cart-wrapper">
         <StyledProductCartButton
@@ -162,6 +169,8 @@ export const ProductCard = ({ productData }) => {
             )}
           </>
         </StyledProductCartButton>
+
+        <span>Qty:</span>
         <input
           type="number"
           disabled={isProductInCart(id)}

@@ -32,7 +32,7 @@ export const Layout = () => {
     ? cart
         .reduce(
           (currentValue, item) =>
-            currentValue + +item.price * +item.quantity,
+            currentValue + +item.price.slice(1) * +item.quantity,
           0
         )
         .toFixed(2)
@@ -51,6 +51,7 @@ export const Layout = () => {
           categories={categories}
           cart={cart}
           totalPrice={totalPrice}
+          setCart={setCart}
         />
         <main>
           <Outlet

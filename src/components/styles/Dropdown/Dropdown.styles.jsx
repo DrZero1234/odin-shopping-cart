@@ -1,10 +1,11 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { StyledCartButton } from "../CartButton.styled";
 import { DropdownSpan } from "../SpanDropdown.styled";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import cartIcon from "../../../assets/CartIcon.svg";
+import { CartItem } from "../../CartItem";
 
 const StyledDropdownWrapper = styled.div`
   li {
@@ -13,6 +14,14 @@ const StyledDropdownWrapper = styled.div`
     text-decoration: none;
     padding: 10px 15px;
     text-align: center;
+  }
+`;
+
+const dropdownOpen = keyframes`
+  from {
+      transform: scaleY(0%);
+  } to {
+    transform: scaleY(1);
   }
 `;
 
@@ -26,12 +35,28 @@ const StyledDropdownList = styled.ul`
   transition: display 1s;
   padding: 5px 10px;
   min-height: 100px;
-
+  animation: 0.3s ${dropdownOpen} ease-in-out;
   .empty-cart {
     min-height: inherit;
     padding: 10px 15px;
     display: flex;
     align-items: flex-end;
+  }
+
+  > input[type="number"]  {
+    max-width: 60px;
+    text-align: center;
+  }
+
+  a > button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cart-btn-total-price {
+    font-weight: 300;
+    font-family: "OswaldRegular", sans-serif;
   }
 `;
 
@@ -40,8 +65,11 @@ export const StyledDropdown = ({
   label,
   list = [],
   totalPrice,
+  setCart,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(`Total price: ${totalPrice}`);
 
   return (
     <StyledDropdownWrapper>
@@ -50,8 +78,14 @@ export const StyledDropdown = ({
           onClick={() => setIsOpen(!isOpen)}
           data-testid="DropdownParent"
         >
+          {list.length}
           <img src={cartIcon} />
           <span>{label}</span>
+          {list.length ? (
+            <span className="cart-btn-total-price">
+              ${+totalPrice}
+            </span>
+          ) : null}
         </StyledCartButton>
       ) : childType === "span" ? (
         <DropdownSpan
@@ -70,8 +104,17 @@ export const StyledDropdown = ({
         childType === "btn" && list.length > 0 ? (
           <>
             {list.map((product) => (
-              <p>{product.productName}</p>
+              <>
+                <CartItem
+                  productData={product}
+                  cart={list}
+                  setCart={setCart}
+                />
+              </>
             ))}
+            <Link to="/checkout">
+              <button>View Checkout</button>
+            </Link>
           </>
         ) : (
           /* Header dropdown span for the categories */
