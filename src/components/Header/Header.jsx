@@ -62,7 +62,7 @@ const StyledHeaderNavWrapper = styled.nav`
 
   .header-nav-list {
     display: flex;
-    gap: 0.5rem;
+    gap: 2rem;
     align-items: center;
   }
 

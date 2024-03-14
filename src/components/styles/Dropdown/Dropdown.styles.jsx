@@ -31,7 +31,7 @@ const StyledDropdownList = styled.ul`
   background-color: white;
   min-width: 100px;
   box-shadow: 2px 2px 5px hsl(0, 0%, 0%, 0.8);
-  margin-top: 5px;
+  margin-top: 10px;
   transition: display 1s;
   padding: 5px 10px;
   min-height: 100px;
@@ -52,11 +52,6 @@ const StyledDropdownList = styled.ul`
     width: 100%;
     display: flex;
     justify-content: center;
-  }
-
-  .cart-btn-total-price {
-    font-weight: 300;
-    font-family: "OswaldRegular", sans-serif;
   }
 `;
 

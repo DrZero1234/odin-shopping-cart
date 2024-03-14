@@ -107,6 +107,9 @@ export const ProductCard = ({ productData }) => {
   const [currentQuantity, setCurrentQuantity] = useState(1);
   const { isProductInCart, setCart, cart } = useOutletContext();
 
+  const { id, productName, price, description, category, image } =
+    productData;
+
   const addToCart = () => {
     const cart_copy = cart.slice();
     productData.quantity = currentQuantity;
@@ -115,7 +118,7 @@ export const ProductCard = ({ productData }) => {
     setCurrentQuantity(1);
   };
 
-  const removeFromCart = (id) => {
+  const removeFromCart = () => {
     const itemToRemove = cart.find((item) => item.id === id);
 
     if (itemToRemove) {
@@ -128,9 +131,6 @@ export const ProductCard = ({ productData }) => {
     }
     return;
   };
-
-  const { id, productName, price, description, category, image } =
-    productData;
 
   const imgRef = useRef(null);
 
