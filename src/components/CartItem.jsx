@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { removeFromCart } from "../utils/cartFunctions";
 
-const StyledCartItemWrapper = styled.li`
+const StyledCartItemWrapper = styled.form`
   display: flex !important;
-  flex-direction: row;
+  flex: 1 1 0;
   align-items: center;
   gap: 2em;
 
@@ -32,11 +33,11 @@ export const CartItem = ({ productData, cart, setCart }) => {
 
   const handleQuantityChange = (e) => {
     const cart_copy = cart.slice();
-    const product = cart.find((product) => +product.id === +id);
+    const product = cart.find((product) => product.id === id);
     const productIndex = cart.indexOf(product);
     setProductQuantity(e.target.value);
     cart_copy[productIndex].quantity = productQuantity;
-    console.log(cart_copy);
+    console.log(cart_copy[productIndex]);
     setCart(cart_copy);
   };
 
@@ -54,7 +55,10 @@ export const CartItem = ({ productData, cart, setCart }) => {
   };
 
   return (
-    <StyledCartItemWrapper key={id}>
+    <StyledCartItemWrapper
+      key={id}
+      onSubmit={(e) => removeFromCart(e, cart, setCart, id)}
+    >
       <img src={image[0]} />
       <Link to={`product/${id}`}>
         <h3>{productName}</h3>
@@ -67,7 +71,8 @@ export const CartItem = ({ productData, cart, setCart }) => {
         data-productId={id}
         onChange={(e) => handleQuantityChange(e)}
       />
-      <button onClick={() => handleRemove()}>Remove item</button>
+      <span>{(+productQuantity * +price.slice(1)).toFixed(2)} $</span>
+      <button type="submit">Remove item</button>
     </StyledCartItemWrapper>
   );
 };

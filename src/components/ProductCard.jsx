@@ -4,6 +4,8 @@ import { StyledCartButton } from "./styles/CartButton.styled";
 import { useRef, useState } from "react";
 import InputNumber from "react-input-number";
 
+import { addToCart, removeFromCart } from "../utils/cartFunctions";
+
 import bagIcon from "../assets/BagIcon.svg";
 
 const StyledProductCard = styled.div`
@@ -110,28 +112,6 @@ export const ProductCard = ({ productData }) => {
   const { id, productName, price, description, category, image } =
     productData;
 
-  const addToCart = () => {
-    const cart_copy = cart.slice();
-    productData.quantity = currentQuantity;
-    cart_copy.push(productData);
-    setCart(cart_copy);
-    setCurrentQuantity(1);
-  };
-
-  const removeFromCart = () => {
-    const itemToRemove = cart.find((item) => item.id === id);
-
-    if (itemToRemove) {
-      const index = cart.indexOf(itemToRemove);
-      const new_cart = [
-        ...cart.slice(0, index),
-        ...cart.slice(index + 1),
-      ];
-      setCart(new_cart);
-    }
-    return;
-  };
-
   const imgRef = useRef(null);
 
   return (
@@ -150,14 +130,23 @@ export const ProductCard = ({ productData }) => {
       </Link>
       <p>{description.substring(0, 75)}...</p>
       <span id="price">{price}</span>
-      <div className="add-to-cart-wrapper">
-        <StyledProductCartButton
-          onClick={
-            isProductInCart(id)
-              ? () => removeFromCart(id)
-              : () => addToCart()
-          }
-        >
+      <form
+        className="add-to-cart-wrapper"
+        onSubmit={
+          isProductInCart(id)
+            ? (e) => removeFromCart(e, cart, setCart, id)
+            : (e) =>
+                addToCart(
+                  e,
+                  cart,
+                  setCart,
+                  currentQuantity,
+                  setCurrentQuantity,
+                  productData
+                )
+        }
+      >
+        <StyledProductCartButton type="submit">
           <>
             {isProductInCart(id) ? (
               "Remove from cart"
@@ -180,7 +169,7 @@ export const ProductCard = ({ productData }) => {
           value={currentQuantity}
           onChange={(e) => setCurrentQuantity(e.target.value)}
         />
-      </div>
+      </form>
     </StyledProductCard>
   );
 };

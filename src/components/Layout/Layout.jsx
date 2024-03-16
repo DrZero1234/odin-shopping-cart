@@ -3,7 +3,7 @@ import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCategories } from "../../api/api";
 
 const StyledLayoutContainer = styled.div`
@@ -28,21 +28,17 @@ export const Layout = () => {
 
   const isProductInCart = (id) => cart.find((item) => id === item.id);
 
-  const totalPrice = cart.length
-    ? cart
-        .reduce(
-          (currentValue, item) =>
-            currentValue + +item.price.slice(1) * +item.quantity,
-          0
-        )
-        .toFixed(2)
-    : 0;
+  const totalPrice = cart
+    .reduce(
+      (currentValue, item) =>
+        currentValue + item.price.slice(1) * item.quantity,
+      0
+    )
+    .toFixed(2);
   /* official version
   const { categories } = useLoaderData();
   */
   const categories = useLoaderData();
-
-  console.log(categories);
 
   return (
     <>

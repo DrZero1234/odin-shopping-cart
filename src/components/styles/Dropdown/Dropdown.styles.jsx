@@ -36,6 +36,7 @@ const StyledDropdownList = styled.ul`
   padding: 5px 10px;
   min-height: 100px;
   animation: 0.3s ${dropdownOpen} ease-in-out;
+  border-radius: 10px;
   .empty-cart {
     min-height: inherit;
     padding: 10px 15px;
@@ -99,13 +100,13 @@ export const StyledDropdown = ({
         childType === "btn" && list.length > 0 ? (
           <>
             {list.map((product) => (
-              <>
+              <li>
                 <CartItem
                   productData={product}
                   cart={list}
                   setCart={setCart}
                 />
-              </>
+              </li>
             ))}
             <Link to="/checkout">
               <button>View Checkout</button>
