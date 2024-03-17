@@ -87,8 +87,8 @@ const StyledProductDetails = styled.div`
   }
 
   .star-rating-wrapper img {
-    height: 15px;
-    width: 15px;
+    max-height: 20px;
+    max-width: 20px;
   }
 `;
 
@@ -117,7 +117,13 @@ export const ProductDetails = () => {
     productName,
     productRating,
   } = productData;
+
+  const { rate: productRate, count: ratingCount } = productRating;
+
   console.log(productData);
+
+  const filledStarArray = Array(Math.floor(productRate)).fill(true);
+  const greyStarArray = Array(5 - Math.floor(productRate)).fill(true);
 
   return (
     <MainWrapper>
@@ -145,7 +151,16 @@ export const ProductDetails = () => {
         {" "}
         <StyledProductDetails>
           <div className="star-rating-wrapper">
-            <img src={FilledStar} />
+            {filledStarArray.map((elem, i) => (
+              <img src={FilledStar} key={i} />
+            ))}
+
+            {greyStarArray.map((elem, i) => (
+              <img
+                src={BlankStar}
+                key={i + Math.floor(productRate)}
+              />
+            ))}
           </div>
         </StyledProductDetails>
         <StyledProductMedia>
