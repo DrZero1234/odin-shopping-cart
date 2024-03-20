@@ -159,8 +159,9 @@ export const ProductCard = ({ productData }) => {
           </>
         </StyledProductCartButton>
 
-        <span>Qty:</span>
+        <label htmlFor={`${id}-qty`}>Qty:</label>
         <input
+          id={`${id}-qty`}
           type="number"
           disabled={isProductInCart(id)}
           min={1}
