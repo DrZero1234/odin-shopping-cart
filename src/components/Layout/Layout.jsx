@@ -15,7 +15,7 @@ const StyledLayoutContainer = styled.div`
 
   main {
     background-color: ${({ theme }) => theme.colors.mainGreen};
-    padding: 20px 80px;
+    margin: 50px 200px;
   }
 `;
 

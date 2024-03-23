@@ -52,6 +52,11 @@ const MainWrapper = styled.div`
       opacity: 0.7;
     }
   }
+
+  .product-description-reviews {
+    padding: 12px;
+    border: 1px solid purple;
+  }
 `;
 
 const ItemDetailsWrapper = styled.div`
@@ -64,23 +69,26 @@ const ItemDetailsWrapper = styled.div`
   img {
     display: block;
     max-width: 100%;
-    max-height: 100%;
   }
 `;
 
 const StyledProductMedia = styled.section`
   flex: 1;
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: auto;
+  grid-template-rows: repeat(2, minmax(200px, 500px));
+  grid-template-columns: repeat(${(props) => props.columns}, 300px);
   gap: 20px;
+  justify-items: center;
 
   img:first-child {
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 2;
   }
 
   img {
     padding: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   img:not(:first-child):hover {
@@ -300,7 +308,7 @@ export const ProductDetails = () => {
             </StyledCartButton>
           </form>
         </StyledProductDetails>
-        <StyledProductMedia>
+        <StyledProductMedia columns={image.length}>
           <img src={image[currentImageIndex]} alt={`Active photo`} />
           {image.map((image, i) => (
             <img
@@ -318,6 +326,7 @@ export const ProductDetails = () => {
       </ItemDetailsWrapper>
       <div className="product-description-reviews">
         <h1>Decription & reviews goes here</h1>
+        <p>{description}</p>
       </div>
     </MainWrapper>
   );
