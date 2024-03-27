@@ -53,9 +53,55 @@ const MainWrapper = styled.div`
     }
   }
 
-  .product-description-reviews {
-    padding: 12px;
-    border: 1px solid purple;
+  .product-bottom {
+    padding: 15px;
+    border: 1px solid #595298;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    line-height: 20px;
+    letter-spacing: 0.6px;
+
+    h2 {
+      font-family: OswaldMedium;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .review-wrapper {
+      margin: 0 5em;
+      padding: 30px 10px;
+      margin-bottom: 15px;
+      border: 1px solid #595298;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      flex-wrap: wrap;
+    }
+
+    .review-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+
+      img {
+        border-radius: 100vw;
+        border: none;
+        height: 60px;
+        width: 60px;
+      }
+
+      .review-user {
+        font-family: "OswaldMedium";
+        font-size: 18px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+      }
+    }
   }
 `;
 
@@ -146,6 +192,16 @@ const StyledProductDetails = styled.section`
     min-width: 110px;
     display: inline-block;
     line-height: 25px;
+  }
+
+  .product-info #price {
+    font-size: 18px;
+    font-weigth: 500;
+  }
+
+  .overall-price {
+    font-size: 12px;
+    opacity: 0.8;
   }
 `;
 
@@ -266,6 +322,18 @@ export const ProductDetails = () => {
               {shipping.shippingMethod}, $ {shipping.shippingCost}
             </span>
           </div>
+          <div className="product-info">
+            <span>Price: </span>
+            <span id="price">{price}</span>
+          </div>
+          {currentQuantity ? (
+            <div className="product-info overall-price">
+              <span>
+                Total: $
+                {(+price.slice(1) * +currentQuantity).toFixed(2)}
+              </span>
+            </div>
+          ) : null}
           <form
             onSubmit={
               isProductInCart(id)
@@ -324,9 +392,21 @@ export const ProductDetails = () => {
           ))}
         </StyledProductMedia>
       </ItemDetailsWrapper>
-      <div className="product-description-reviews">
-        <h1>Decription & reviews goes here</h1>
+      <div className="product-bottom">
+        <h2>Description</h2>
         <p>{description}</p>
+        <h2>Reviews</h2>
+        <div className="review-wrapper">
+          {customerReviews.map((review) => (
+            <div className="review-card">
+              <div className="review-user">
+                <img src={review.customerImage} />
+                <h4>{review.customerName}</h4>
+              </div>
+              <p>{review.customerReview}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </MainWrapper>
   );

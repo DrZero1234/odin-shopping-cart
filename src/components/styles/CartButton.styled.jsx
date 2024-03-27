@@ -16,6 +16,7 @@ export const StyledCartButton = styled.button`
   padding: 0 10px;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease-in;
 
   .cart-btn-total-price {
     font-weight: 300;
@@ -25,5 +26,10 @@ export const StyledCartButton = styled.button`
   img {
     height: 30px;
     width: 25px;
+  }
+
+  &:hover {
+    background-color: #335465;
+    color: white;
   }
 `;

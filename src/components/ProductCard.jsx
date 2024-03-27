@@ -54,8 +54,11 @@ const StyledProductCard = styled.div`
     justify-content: center;
   }
 
-  .add-to-cart-wrapper > input[type="number"] {
-    flex: 1 1 0;
+  .quantity-wrapper {
+    flex: 1;
+  }
+
+  .quantity-wrapper > input[type="number"] {
     max-width: 100px;
     background: inherit;
     color: white;
@@ -68,7 +71,7 @@ const StyledProductCard = styled.div`
     padding: 5px;
   }
 
-  .add-to-cart-wrapper > input[type="number"]:disabled {
+  .quantity-wrapper > input[type="number"]:disabled {
     opacity: 0.5;
   }
 
@@ -158,18 +161,19 @@ export const ProductCard = ({ productData }) => {
             )}
           </>
         </StyledProductCartButton>
-
-        <label htmlFor={`${id}-qty`}>Qty:</label>
-        <input
-          id={`${id}-qty`}
-          type="number"
-          disabled={isProductInCart(id)}
-          min={1}
-          max={100}
-          step={1}
-          value={currentQuantity}
-          onChange={(e) => setCurrentQuantity(e.target.value)}
-        />
+        <div className="quantity-wrapper">
+          <label htmlFor={`${id}-qty`}>Qty:</label>
+          <input
+            id={`${id}-qty`}
+            type="number"
+            disabled={isProductInCart(id)}
+            min={1}
+            max={100}
+            step={1}
+            value={currentQuantity}
+            onChange={(e) => setCurrentQuantity(e.target.value)}
+          />
+        </div>
       </form>
     </StyledProductCard>
   );
