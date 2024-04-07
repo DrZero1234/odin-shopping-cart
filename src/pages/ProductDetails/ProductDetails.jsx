@@ -142,20 +142,20 @@ const StyledProductMedia = styled.section`
   }
 `;
 
+const StyledStarRatingWrapper = styled.div`
+  display: flex;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
 const StyledProductDetails = styled.section`
   display: flex;
   flex-direction: column;
   flex: 1;
   gap: 1em;
-
-  .star-rating-wrapper {
-    display: flex;
-  }
-
-  .star-rating-wrapper img {
-    height: 20px;
-    width: 20px;
-  }
 
   .product-rating,
   form {
@@ -272,7 +272,7 @@ export const ProductDetails = () => {
         {" "}
         <StyledProductDetails>
           <div className="product-rating">
-            <div className="star-rating-wrapper">
+            <StyledStarRatingWrapper>
               {filledStarArray.map((elem, i) => (
                 <img src={FilledStar} key={i} />
               ))}
@@ -283,7 +283,7 @@ export const ProductDetails = () => {
                   key={i + Math.floor(productRate)}
                 />
               ))}
-            </div>
+            </StyledStarRatingWrapper>
             <li>
               <span>{productRate} stars</span>
             </li>

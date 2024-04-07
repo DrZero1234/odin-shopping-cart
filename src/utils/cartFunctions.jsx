@@ -8,7 +8,7 @@ export const addToCart = (
 ) => {
   e.preventDefault();
   const cart_copy = cart.slice();
-  productData.quantity = currentQuantity;
+  productData.quantity = +currentQuantity;
   cart_copy.push(productData);
   setCart(cart_copy);
   setCurrentQuantity(1);

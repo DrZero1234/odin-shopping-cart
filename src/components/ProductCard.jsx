@@ -2,7 +2,6 @@ import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { StyledCartButton } from "./styles/CartButton.styled";
 import { useRef, useState } from "react";
-import InputNumber from "react-input-number";
 
 import { addToCart, removeFromCart } from "../utils/cartFunctions";
 

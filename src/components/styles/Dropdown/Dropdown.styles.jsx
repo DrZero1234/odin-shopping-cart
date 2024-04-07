@@ -54,10 +54,6 @@ const StyledDropdownList = styled.ul`
     display: flex;
     justify-content: center;
   }
-
-  &:last-child {
-    border-bottom: 5px solid black;
-  }
 `;
 
 export const StyledDropdown = ({
@@ -106,7 +102,7 @@ export const StyledDropdown = ({
             {list.map((product) => (
               <li>
                 <CartItem
-                  productData={product}
+                  productId={product.id}
                   cart={list}
                   setCart={setCart}
                 />
