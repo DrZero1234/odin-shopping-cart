@@ -66,6 +66,9 @@ export const Checkout = () => {
               </StyledCartItem>
             </li>
           ))}
+          <li>
+            <div className="total-price">{totalPrice}</div>
+          </li>
         </StyledCartList>
       )}
     </StyledCartWrapper>

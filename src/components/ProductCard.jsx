@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 import { addToCart, removeFromCart } from "../utils/cartFunctions";
 
-import bagIcon from "../assets/BagIcon.svg";
+import BagIcon from "../assets/BagIcon.svg?react";
 
 const StyledProductCard = styled.div`
   display: flex;
@@ -97,13 +97,22 @@ const StyledProductCartButton = styled(StyledCartButton)`
   justify-content: center;
   gap: 0.5em;
 
-  img {
+  svg {
     max-width: 30px;
     max-height: 25px;
   }
 
   &:hover {
     background-color: #335465;
+
+    svg {
+      fill: #bda068;
+    }
+
+    svg path {
+      stroke: rgba(238, 233, 232, 0.94);
+      stroke-width: 2;
+    }
   }
 `;
 
@@ -155,7 +164,7 @@ export const ProductCard = ({ productData }) => {
             ) : (
               <>
                 Add to cart
-                <img src={bagIcon} />
+                <BagIcon />
               </>
             )}
           </>

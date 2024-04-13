@@ -1,32 +1,34 @@
 import styled from "styled-components";
-import GithubLogo from "../../assets/GithubLogo.svg";
+import GithubLogo from "../../assets/GithubLogo.svg?react";
+import OdinProjectLogo from "../../assets/OdinProjectLogo.svg?react";
+import TemplateSiteIcon from "../../assets/TemplateSiteIcon.svg?react";
 
 const StyledFooterList = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: 2em;
   text-decoration: none;
   list-style-type: none;
 
-  img {
+  svg {
     min-width: 40px;
     max-width: 80px;
+    height: 60px;
     background: inherit;
-    filter: brightness(100%);
-    -webkit-filter: brightness(100%);
-    -moz-filter: brightness(100%);
-    -o-filter: brightness(100%);
-    -ms-filter: brightness(100%);
+    transition: all 0.3s ease-in;
   }
 
-  img:hover {
-    filter: brightness(0%);
-    -webkit-filter: brightness(50%);
-    -moz-filter: brightness(50%);
-    -o-filter: brightness(50%);
-    -ms-filter: brightness(50%);
+  svg:hover {
+    transform: scale(1.1);
+    g {
+      fill: white;
+    }
   }
 `;
+
+// https://preview.themeforest.net/item/mensonly-opencart-4-clothing-store-template/full_screen_preview/46788283
 
 export const Footer = () => {
   return (
@@ -34,7 +36,17 @@ export const Footer = () => {
       <StyledFooterList>
         <li>
           <a href="https://github.com/DrZero1234/odin-shopping-cart">
-            <img src={GithubLogo} />
+            <GithubLogo />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart">
+            <OdinProjectLogo />
+          </a>
+        </li>
+        <li>
+          <a href="https://preview.themeforest.net/item/mensonly-opencart-4-clothing-store-template/full_screen_preview/46788283">
+            <TemplateSiteIcon id="template-icon" />
           </a>
         </li>
       </StyledFooterList>
