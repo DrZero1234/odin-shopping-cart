@@ -27,6 +27,7 @@ const StyledHomeIntroFlex = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.5em;
+  margin-top: 3em;
 `;
 
 const StyledFlexSection = styled.section`
@@ -100,7 +101,7 @@ export const Home = () => {
           </div>
         </StyledFlexSection>
         <StyledFlexSection>
-          <div>
+          <div className="section-text-wrapper">
             <h3>Men´s fashion</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing
@@ -121,7 +122,7 @@ export const Home = () => {
           </div>
         </StyledFlexSection>
         <StyledFlexSection>
-          <div>
+          <div className="section-text-wrapper">
             <h3>Women´s fashion</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing
@@ -142,7 +143,7 @@ export const Home = () => {
           </div>
         </StyledFlexSection>
         <StyledFlexSection>
-          <div>
+          <div className="section-text-wrapper">
             <h3>Jewelry</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing

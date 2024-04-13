@@ -18,6 +18,7 @@ import BagIcon from "../../assets/BagIcon.svg";
 import { addToCart, removeFromCart } from "../../utils/cartFunctions";
 
 import { StyledCartButton } from "../../components/styles/CartButton.styled";
+import { StarRating } from "../../components/styles/StarRating";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -86,7 +87,7 @@ const MainWrapper = styled.div`
       flex-direction: column;
       gap: 0.5em;
 
-      img {
+      .customer-profile-image {
         border-radius: 100vw;
         border: none;
         height: 60px;
@@ -243,9 +244,6 @@ export const ProductDetails = () => {
 
   console.log(productData);
 
-  const filledStarArray = Array(Math.floor(productRate)).fill(true);
-  const greyStarArray = Array(5 - Math.floor(productRate)).fill(true);
-
   return (
     <MainWrapper>
       <div className="details-header">
@@ -272,18 +270,7 @@ export const ProductDetails = () => {
         {" "}
         <StyledProductDetails>
           <div className="product-rating">
-            <StyledStarRatingWrapper>
-              {filledStarArray.map((elem, i) => (
-                <img src={FilledStar} key={i} />
-              ))}
-
-              {greyStarArray.map((elem, i) => (
-                <img
-                  src={BlankStar}
-                  key={i + Math.floor(productRate)}
-                />
-              ))}
-            </StyledStarRatingWrapper>
+            <StarRating productRating={productRate} />
             <li>
               <span>{productRate} stars</span>
             </li>
@@ -400,8 +387,12 @@ export const ProductDetails = () => {
           {customerReviews.map((review) => (
             <div className="review-card">
               <div className="review-user">
-                <img src={review.customerImage} />
+                <img
+                  src={review.customerImage}
+                  className="customer-profile-image"
+                />
                 <h4>{review.customerName}</h4>
+                <StarRating productRating={review.customerRating} />
               </div>
               <p>{review.customerReview}</p>
             </div>

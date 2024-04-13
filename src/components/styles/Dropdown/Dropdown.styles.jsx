@@ -54,6 +54,24 @@ const StyledDropdownList = styled.ul`
     display: flex;
     justify-content: center;
   }
+
+  h3 {
+    font-family: "OswaldMedium", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .cart-dropdown-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid grey;
+    padding: 10px 0px;
+    a {
+      max-width: 50%;
+    }
+  }
 `;
 
 export const StyledDropdown = ({
@@ -94,7 +112,7 @@ export const StyledDropdown = ({
       <StyledDropdownList isOpen={isOpen}>
         {childType === "btn" && list.length < 1 ? (
           <div className="empty-cart">
-            <h4>Not items in your cart</h4>
+            <h4>Your shopping cart is empty!</h4>
           </div>
         ) : // Header Dropdown if the cart has items in it
         childType === "btn" && list.length > 0 ? (
@@ -108,9 +126,12 @@ export const StyledDropdown = ({
                 />
               </li>
             ))}
-            <Link to="/checkout">
-              <button>View Checkout</button>
-            </Link>
+            <div className="cart-dropdown-footer">
+              <h3>Total price: ${totalPrice}</h3>
+              <Link to="/checkout">
+                <StyledCartButton>View Checkout</StyledCartButton>
+              </Link>
+            </div>
           </>
         ) : (
           /* Header dropdown span for the categories */

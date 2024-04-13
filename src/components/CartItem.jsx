@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { removeFromCart } from "../utils/cartFunctions";
 
+import deleteIcon from "../assets/DeleteIcon.svg";
+
 const StyledCartItemWrapper = styled.form`
   display: flex !important;
   flex: 1 1 0;
@@ -39,6 +41,29 @@ const StyledCartItemWrapper = styled.form`
   input[type="number"] {
     max-width: 60px;
     text-align: center;
+  }
+
+  button[type="submit"] {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: inherit;
+  }
+
+  button[type="submit"] img {
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
+    -moz-filter: brightness(100%);
+    -o-filter: brightness(100%);
+    -ms-filter: brightness(100%);
+  }
+
+  button[type="submit"] img:hover {
+    filter: brightness(0%);
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -o-filter: brightness(50%);
+    -ms-filter: brightness(50%);
   }
 `;
 
@@ -92,7 +117,9 @@ export const CartItem = ({ productId, cart, setCart }) => {
           onChange={(e) => handleQuantityChange(e)}
         />
         <span>{(quantity * +price.slice(1)).toFixed(2)} $</span>
-        <button type="submit">Remove item</button>
+        <button type="submit">
+          <img src={deleteIcon} alt="delete icon" />
+        </button>
       </div>
     </StyledCartItemWrapper>
   );
