@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-import FilledStar from "../../assets/FilledStar.svg";
-import BlankStar from "../../assets/BlankStar.svg";
+import FilledStar from "../../assets/FilledStar.svg?react";
+import BlankStar from "../../assets/BlankStar.svg?react";
 
 const StyledStarRatingWrapper = styled.div`
   display: flex;
 
-  img {
+  svg {
     width: 20px;
     height: 20px;
   }
@@ -21,11 +21,11 @@ export const StarRating = ({ productRating }) => {
   return (
     <StyledStarRatingWrapper>
       {filledStarArray.map((elem, i) => (
-        <img src={FilledStar} key={i} />
+        <FilledStar key={i} />
       ))}
 
       {greyStarArray.map((elem, i) => (
-        <img src={BlankStar} key={i + Math.floor(productRating)} />
+        <BlankStar key={i + Math.floor(productRating)} />
       ))}
     </StyledStarRatingWrapper>
   );

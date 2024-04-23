@@ -40,6 +40,18 @@ const StyledFlexSection = styled.section`
     flex-direction: row;
   }
 
+  @media (max-width: 768px) {
+    &:nth-child(even) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &:nth-child(odd) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
   .section-text-wrapper {
     display: flex;
     flex-direction: column;
@@ -71,6 +83,12 @@ const StyledFlexSection = styled.section`
 
   div {
     width: 50%;
+  }
+
+  @media (max-width: 768px) {
+    div {
+      width: 100%;
+    }
   }
 `;
 

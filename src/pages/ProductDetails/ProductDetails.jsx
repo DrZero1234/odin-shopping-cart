@@ -10,10 +10,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import { StyledQuantityInput } from "../../components/styles/QuantityInput";
 
-import BlankStar from "../../assets/BlankStar.svg";
-import FilledStar from "../../assets/FilledStar.svg";
-import HomeIcon from "../../assets/HomeIcon.svg";
-import BagIcon from "../../assets/BagIcon.svg";
+import HomeIcon from "../../assets/HomeIcon.svg?react";
+import BagIcon from "../../assets/BagIcon.svg?react";
 
 import { addToCart, removeFromCart } from "../../utils/cartFunctions";
 
@@ -33,7 +31,7 @@ const MainWrapper = styled.div`
   }
 
   .details-header {
-    img {
+    svg {
       height: 20px;
       width: 20px;
     }
@@ -214,7 +212,9 @@ export const loader = async ({ params }) => {
 };
 
 export const ProductDetails = () => {
-  //const { item: productData } = useLoaderData();
+  // Original version
+  const { item: productData } = useLoaderData();
+
   const [currentImageIndex, setCurrentImageIndex] = useState(1);
   const [currentQuantity, setCurrentQuantity] = useState(1);
 
@@ -224,7 +224,8 @@ export const ProductDetails = () => {
 
   const navigate = useNavigate();
 
-  const productData = useLoaderData();
+  // Test version
+  // const productData = useLoaderData();
   const {
     id,
     category,
@@ -255,7 +256,7 @@ export const ProductDetails = () => {
         <ul>
           <li>
             <Link to="/">
-              <img src={HomeIcon} alt="Back to homepage" />
+              <HomeIcon />
             </Link>
           </li>
           <li>
@@ -356,7 +357,7 @@ export const ProductDetails = () => {
                 ) : (
                   <>
                     Add to cart
-                    <img src={BagIcon} />
+                    <BagIcon />
                   </>
                 )}
               </>

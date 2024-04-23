@@ -41,11 +41,11 @@ export const loader = async ({ params }) => {
 };
 
 export const ProductList = () => {
-  /* List of items based on the cateogory (original)
+  // Original version
   const { items } = useLoaderData();
-  */
 
-  const items = useLoaderData();
+  // Test version
+  // const items = useLoaderData();
 
   console.log(items);
 

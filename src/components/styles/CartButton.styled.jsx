@@ -23,7 +23,7 @@ export const StyledCartButton = styled.button`
     font-family: "OswaldRegular", sans-serif;
   }
 
-  img {
+  svg {
     height: 30px;
     width: 25px;
   }
@@ -31,5 +31,13 @@ export const StyledCartButton = styled.button`
   &:hover {
     background-color: #335465;
     color: white;
+
+    svg g {
+      fill: white;
+    }
+
+    svg path {
+      stroke: white;
+    }
   }
 `;

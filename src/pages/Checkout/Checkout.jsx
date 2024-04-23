@@ -17,6 +17,43 @@ const StyledCartWrapper = styled.div`
 const StyledCartList = styled.ul`
   list-style-type: none;
   border: 2px solid white;
+
+  .checkout-footer {
+    display: flex;
+    border-top: 2px solid white;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .total-price,
+  #clear-cart-btn {
+    margin: 0 40px;
+  }
+
+  #clear-cart-btn {
+    height: 50%;
+    padding: 5px 20px;
+    background: rgba(186, 23, 16, 0.8);
+    border: none;
+    color: white;
+    letter-spacing: 2px;
+  }
+
+  #clear-cart-btn:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.85);
+    color: rgba(186, 23, 16, 0.8);
+  }
+
+  .total-price {
+    font-size: 20px;
+    padding: 5px;
+  }
+
+  #price-span {
+    font-family: "OswaldMedium", sans-serif;
+    font-weight: 700;
+  }
 `;
 
 const StyledCartItem = styled.li`
@@ -36,10 +73,6 @@ const StyledCartItem = styled.li`
 
   h3&:hover {
     border-bottom: 1px solid black;
-  }
-
-  &:not(&:last-child) {
-    border-bottom: 2px solid white;
   }
 `;
 
@@ -67,7 +100,16 @@ export const Checkout = () => {
             </li>
           ))}
           <li>
-            <div className="total-price">{totalPrice}</div>
+            <div className="checkout-footer">
+              <div className="total-price">
+                Total price:{" "}
+                <span id="price-span"> ${totalPrice}</span>
+              </div>
+
+              <button onClick={() => setCart([])} id="clear-cart-btn">
+                Clear cart
+              </button>
+            </div>
           </li>
         </StyledCartList>
       )}

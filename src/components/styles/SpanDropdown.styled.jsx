@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import PointerDown from "../../assets/PointerDown.svg";
-import PointerUp from "../../assets/PointerUp.svg";
+import PointerDown from "../../assets/PointerDown.svg?react";
+import PointerUp from "../../assets/PointerUp.svg?react";
 
 const DropdownContainer = styled.div`
   display: flex;
@@ -13,8 +13,9 @@ const DropdownContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
-  img {
+  svg {
     max-width: 10px;
+    max-height: 10px;
   }
 `;
 
@@ -22,7 +23,7 @@ export const DropdownSpan = ({ label, isOpen, setIsOpen }) => {
   return (
     <DropdownContainer onClick={() => setIsOpen(!isOpen)}>
       <span>{label}</span>
-      <img src={isOpen ? PointerUp : PointerDown} />
+      {isOpen ? <PointerUp /> : <PointerDown />}
     </DropdownContainer>
   );
 };

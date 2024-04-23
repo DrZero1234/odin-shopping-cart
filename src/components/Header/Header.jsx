@@ -3,9 +3,6 @@ import { NavLink, Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { StyledDropdown } from "../styles/Dropdown/Dropdown.styles";
 
-import PointerUp from "../../assets/PointerUp.svg";
-import CartIcon from "../../assets/CartIcon.svg";
-
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-around;

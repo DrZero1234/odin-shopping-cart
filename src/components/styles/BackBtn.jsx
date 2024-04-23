@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backArrow from "../../assets/BackArrow.svg";
+import BackArrow from "../../assets/BackArrow.svg?react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
@@ -16,8 +16,9 @@ const Wrapper = styled.div`
     border: none;
   }
 
-  img {
+  svg {
     width: 30px;
+    height: 30px;
     border: 1px solid white;
     border-radius: 100%;
   }
@@ -33,7 +34,7 @@ export const StyledBackBtn = ({ label }) => {
   return (
     <Wrapper>
       <button onClick={() => navigate(-1)}>
-        <img src={backArrow} alt="" />
+        <BackArrow />
         <span>{label}</span>
       </button>
     </Wrapper>

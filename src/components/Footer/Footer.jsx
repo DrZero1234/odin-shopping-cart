@@ -2,6 +2,7 @@ import styled from "styled-components";
 import GithubLogo from "../../assets/GithubLogo.svg?react";
 import OdinProjectLogo from "../../assets/OdinProjectLogo.svg?react";
 import TemplateSiteIcon from "../../assets/TemplateSiteIcon.svg?react";
+import ApiLogo from "../../assets/ApiLogo.svg?react";
 
 const StyledFooterList = styled.ul`
   display: flex;
@@ -47,6 +48,11 @@ export const Footer = () => {
         <li>
           <a href="https://preview.themeforest.net/item/mensonly-opencart-4-clothing-store-template/full_screen_preview/46788283">
             <TemplateSiteIcon id="template-icon" />
+          </a>
+        </li>
+        <li>
+          <a href="https://rapidapi.com/1uckyswish/api/affogato-the-ecommerce-store">
+            <ApiLogo id="template-icon" />
           </a>
         </li>
       </StyledFooterList>

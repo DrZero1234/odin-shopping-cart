@@ -35,10 +35,10 @@ export const Layout = () => {
       0
     )
     .toFixed(2);
-  /* official version
+  // Official version
   const { categories } = useLoaderData();
-  */
-  const categories = useLoaderData();
+  // Test version
+  //const categories = useLoaderData();
 
   return (
     <>

@@ -19,6 +19,8 @@ import {
   loader as productDetailsLoader,
 } from "./pages/ProductDetails/ProductDetails";
 import { Checkout } from "./pages/Checkout/Checkout";
+import { NotFound } from "./pages/NotFound";
+import { ErrorPage } from "./components/ErrorPage";
 
 // Page template :https://preview.themeforest.net/item/mensonly-opencart-4-clothing-store-template/full_screen_preview/46788283
 
@@ -31,13 +33,16 @@ const router = createBrowserRouter(
         path=":categoryName"
         element={<ProductList />}
         loader={ProductListLoader}
+        errorElement={<ErrorPage />}
       />
       <Route
         path="product/:productId"
         element={<ProductDetails />}
         loader={productDetailsLoader}
+        errorElement={<ErrorPage />}
       />
       <Route path="checkout" element={<Checkout />} />
+      <Route path="" element={<NotFound />} />
     </Route>
   )
 );

@@ -4,7 +4,7 @@ import { StyledCartButton } from "../CartButton.styled";
 import { DropdownSpan } from "../SpanDropdown.styled";
 import { NavLink, Link } from "react-router-dom";
 
-import cartIcon from "../../../assets/CartIcon.svg";
+import CartIcon from "../../../assets/CartIcon.svg?react";
 import { CartItem } from "../../CartItem";
 
 const StyledDropdownWrapper = styled.div`
@@ -66,6 +66,7 @@ const StyledDropdownList = styled.ul`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     border-top: 1px solid grey;
     padding: 10px 0px;
     a {
@@ -83,8 +84,6 @@ export const StyledDropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(`Total price: ${totalPrice}`);
-
   return (
     <StyledDropdownWrapper>
       {childType === "btn" ? (
@@ -93,7 +92,7 @@ export const StyledDropdown = ({
           data-testid="DropdownParent"
         >
           {list.length}
-          <img src={cartIcon} />
+          <CartIcon />
           <span>{label}</span>
           {list.length ? (
             <span className="cart-btn-total-price">
@@ -137,7 +136,6 @@ export const StyledDropdown = ({
           /* Header dropdown span for the categories */
           list.map((item, i) => {
             const url = encodeURI(item);
-            console.log(url);
             return (
               <li key={i}>
                 <NavLink to={url}>{item}</NavLink>

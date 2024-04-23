@@ -41,6 +41,12 @@ const StyledCartItemWrapper = styled.form`
   input[type="number"] {
     max-width: 60px;
     text-align: center;
+    border-radius: 10px;
+    padding: 6px;
+    border: 1px solid grey;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   button[type="submit"] {
