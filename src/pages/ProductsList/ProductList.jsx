@@ -1,8 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { defer, useLoaderData, Await } from "react-router-dom";
 import { getCategoryProductList } from "../../api/api";
 import { StyledBackBtn } from "../../components/styles/BackBtn";
 import styled from "styled-components";
 import { ProductCard } from "../../components/ProductCard";
+import { Suspense } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -33,35 +34,56 @@ const ProductListGrid = styled.div`
   grid-gap: 1.5em;
 `;
 
-export const loader = async ({ params }) => {
-  return getCategoryProductList(
+export const loader = ({ params }) => {
+  const productListPromise = getCategoryProductList(
     import.meta.env.VITE_API_KEY,
     params.categoryName
   );
+  return defer({ productList: productListPromise });
 };
 
 export const ProductList = () => {
   // Original version
-  const { items } = useLoaderData();
+  const itemsPromise = useLoaderData();
 
   // Test version
   // const items = useLoaderData();
-
-  console.log(items);
 
   return (
     <Container>
       <MainGridWrapper>
         <BackBtn label="Back to category" />
-        <ProductListGrid>
-          {items.length > 0 ? (
-            items.map((item) => (
-              <ProductCard productData={item} key={item.id} />
-            ))
-          ) : (
-            <h2>No products in this category</h2>
-          )}
-        </ProductListGrid>
+        <Suspense
+          fallback={
+            <div
+              style={{
+                minWidth: "100vw",
+                minHeight: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h2>Loading....</h2>
+            </div>
+          }
+        >
+          <Await resolve={itemsPromise.productList}>
+            {({ items }) => {
+              const itemElements =
+                items.length > 0 ? (
+                  items.map((item) => (
+                    <ProductCard productData={item} key={item.id} />
+                  ))
+                ) : (
+                  <h2>No products in this category</h2>
+                );
+              return (
+                <ProductListGrid>{itemElements}</ProductListGrid>
+              );
+            }}
+          </Await>
+        </Suspense>
       </MainGridWrapper>
     </Container>
   );

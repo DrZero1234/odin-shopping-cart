@@ -40,10 +40,10 @@ export const getCategoryProductList = async (key,categoryName) => {
         status: res.status
       }
     }
-    return await res.json();
+    //return res.json();
     
     // Test version 
-    // return ProductListMock
+    return {items: ProductListMock}
 } 
 
 export const getProductById = async(key,productId) => {
