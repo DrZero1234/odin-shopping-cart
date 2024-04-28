@@ -14,10 +14,9 @@ export const getCategories = async(key) => {
         status: res.status
       }
     }
-    return await res.json()
     
 
-    /*
+    
     return [
   "Shoes",
   "Accessories",
@@ -26,7 +25,7 @@ export const getCategories = async(key) => {
   "Jewelry"
   
 ]
-*/
+
 }
 
 
