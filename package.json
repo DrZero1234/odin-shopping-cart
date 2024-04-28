@@ -13,7 +13,6 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-input-number": "^5.0.19",
     "react-router-dom": "^6.22.1",
     "styled-components": "^6.1.8",
     "vite-plugin-svgr": "^4.2.0"
