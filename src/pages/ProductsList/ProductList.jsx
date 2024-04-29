@@ -4,6 +4,7 @@ import { StyledBackBtn } from "../../components/styles/BackBtn";
 import styled from "styled-components";
 import { ProductCard } from "../../components/ProductCard";
 import { Suspense } from "react";
+import { LoadingCircle } from "../../components/LoadingCircle";
 
 const Container = styled.div`
   display: flex;
@@ -54,19 +55,7 @@ export const ProductList = () => {
       <MainGridWrapper>
         <BackBtn label="Back to category" />
         <Suspense
-          fallback={
-            <div
-              style={{
-                minWidth: "100vw",
-                minHeight: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <h2>Loading....</h2>
-            </div>
-          }
+          fallback={<LoadingCircle label="Fetching products..." />}
         >
           <Await resolve={itemsPromise.productList}>
             {({ items }) => {
