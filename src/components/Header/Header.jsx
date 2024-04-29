@@ -92,9 +92,6 @@ export const Header = ({ categories, totalPrice, cart, setCart }) => {
       <StyledHeaderNavWrapper>
         <ul className="header-nav-list" data-testid="categoryList">
           <li>
-            <NavLink to="about">About</NavLink>
-          </li>
-          <li>
             <StyledDropdown
               childType="span"
               label="Categories"
@@ -110,7 +107,6 @@ export const Header = ({ categories, totalPrice, cart, setCart }) => {
             totalPrice={totalPrice}
             setCart={setCart}
           />
-          <li>Theme</li>
         </ul>
       </StyledHeaderNavWrapper>
     </StyledHeader>

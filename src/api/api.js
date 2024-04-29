@@ -14,17 +14,16 @@ export const getCategories = async(key) => {
         status: res.status
       }
     }
+    //return res.json();
     
-
-    
-    return [
+    return {categories: [
   "Shoes",
   "Accessories",
   "Men's Clothing",
   "Women's Clothing",
   "Jewelry"
-  
-]
+]}
+
 
 }
 

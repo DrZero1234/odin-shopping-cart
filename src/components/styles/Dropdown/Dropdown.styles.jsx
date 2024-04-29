@@ -83,7 +83,7 @@ export const StyledDropdown = ({
   setCart,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(list);
   return (
     <StyledDropdownWrapper>
       {childType === "btn" ? (
